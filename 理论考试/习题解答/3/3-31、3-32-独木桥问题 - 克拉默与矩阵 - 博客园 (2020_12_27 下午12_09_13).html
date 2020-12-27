@@ -1,0 +1,382 @@
+<!DOCTYPE html> <html lang=zh-cn><!--
+ Page saved with SingleFile 
+ url: https://www.cnblogs.com/kelamoyujuzhen/p/11959988.html 
+ saved date: Sun Dec 27 2020 12:09:13 GMT+0800 (中国标准时间)
+--><meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1.0">
+<meta name=referrer content=origin>
+<meta name=description content="前言 独木桥问题 是操作系统中P、V操作部分的经典问题，有很多变种问题也是考试的重点，需要准确牢记！ 独木桥问题1 问题描述 东西向汽车过独木桥，为了保证安全，只要桥上无车，则允许一方的汽车过桥，待一">
+<meta property=og:description content="前言 独木桥问题 是操作系统中P、V操作部分的经典问题，有很多变种问题也是考试的重点，需要准确牢记！ 独木桥问题1 问题描述 东西向汽车过独木桥，为了保证安全，只要桥上无车，则允许一方的汽车过桥，待一">
+<meta http-equiv=Cache-Control content=no-transform>
+<meta http-equiv=Cache-Control content=no-siteapp>
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<title>独木桥问题 - 克拉默与矩阵 - 博客园</title>
+<style>img{max-width:100%}pre{overflow:auto}.c_ad_block{margin-top:10px;line-height:1.5}#cnblogs_post_body{margin-bottom:20px}.ad_text_commentbox{margin-top:5px;margin-bottom:5px}#opt_under_post{line-height:1.8}#HistoryToday{max-width:600px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}#cnblogs_post_body{word-break:break-word}#cnblogs_post_body p{margin:10px auto;text-indent:0}#cnblogs_post_body h1{font-size:28px;font-weight:bold;line-height:1.5;margin:10px 0}#cnblogs_post_body h2{font-size:21px;font-weight:bold;line-height:1.5;margin:10px 0}.vertical-middle>*{vertical-align:middle}#comment_nav{text-align:right}#comment_nav a{padding-left:10px}.cnblogs-markdown .hljs{display:block;overflow-x:auto;background:#fff;color:#000}.hljs-comment{color:#008000}.hljs-keyword{color:#00f}.cnblogs-markdown code{font-family:"Courier New",sans-serif!important;font-size:12px!important;background-color:#f5f5f5!important;border:1px solid #ccc!important;padding:0 5px!important;border-radius:3px!important;line-height:1.8;margin:1px 5px;vertical-align:middle;display:inline-block;overflow-x:auto}.cnblogs-markdown pre code{margin:auto;height:auto;padding:5px!important}.cnblogs-markdown .hljs{font-family:"Courier New",sans-serif!important;font-size:12px!important;line-height:1.5!important;padding:5px!important}.cnblogs-markdown pre{margin-top:10px;margin-bottom:10px}@-webkit-keyframes ui-dialog-loading{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes ui-dialog-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}*{margin:0;padding:0}html{height:100%}body{color:#000;background-color:#e6e6e6;font-family:"Helvetica Neue",Helvetica,Verdana,Arial,sans-serif;font-size:12px;min-height:101%}img{border:0}li{list-style:none}a{outline:none;color:#21759b}a:link{color:#000;text-decoration:none}a:visited{color:#000;text-decoration:none}a:hover{color:#21759b}a:active{color:#000;text-decoration:none}.clear{clear:both}#home{margin:0 auto;width:65%;min-width:950px;background-color:#fff;padding:30px;margin-top:50px;margin-bottom:50px;box-shadow:0 2px 6px rgba(100,100,100,.3)}#header{padding-bottom:5px;margin-top:10px}#blogTitle{height:60px;clear:both}#blogTitle h1{font-size:26px;font-weight:bold;line-height:1.5em;margin-top:20px}#blogTitle h1 a{color:#515151}#blogTitle h1 a:hover{color:#21759b}#blogTitle h2{font-weight:normal;font-size:.928571429rem;line-height:1.846153846;color:#757575;float:left}#blogLogo{float:right}#navigator{font-size:13px;border-bottom:1px solid #ededed;border-top:1px solid #ededed;height:50px;clear:both;margin-top:25px}#navList{min-height:30px;float:left}#navList li{float:left;margin:0 40px 0 0}#navList a{display:block;width:5em;height:22px;float:left;text-align:center;padding-top:19px}#navList a:link,#navList a:visited,#navList a:active{color:#6a6a6a;font-weight:bold}#navList a:hover{color:#000;text-decoration:none}.blogStats{float:right;color:#757575;margin-top:19px;margin-right:2px;text-align:right}#main{width:100%;text-align:left;margin-top:30px}#mainContent .forFlow{margin-left:22em;float:none;width:auto}#mainContent{min-height:200px;padding:0 0 10px 0;-o-text-overflow:ellipsis;text-overflow:ellipsis;overflow:hidden;float:left;margin-left:-22em;width:100%}.postTitle{border-left:3px solid #21759b;margin-bottom:10px;clear:both}.postTitle a:link,.postTitle a:visited,.postTitle a:active{color:#21759b;transition:all .4s linear 0s}.postTitle a:hover{margin-left:30px;color:#0f3647;text-decoration:none}.postDesc{font-size:13px;float:left;clear:both;padding-right:5px;line-height:1.5}.postDesc a:link,.postDesc a:visited,.postDesc a:active{color:#666}.postDesc a:hover{color:#21759b;text-decoration:none}#topics{width:100%;min-height:200px;padding:0 0 10px 0;float:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;overflow:hidden}#topics .postTitle{border:0;font-size:130%;font-weight:bold;float:left;line-height:1.5;width:100%;padding-left:5px}#topics .postDesc{padding-left:0;width:100%;text-align:left;color:#666;margin-top:5px;background:none}#footer{color:#686868;text-align:center;min-height:15px;border-top:1px solid #ededed;margin-top:50px;padding-top:10px;margin-bottom:10px}.postBody{color:#000;line-height:1.7;font-size:14px}</style>
+<style media="only screen and (max-width: 767px)">body{font-size:14px!important;-webkit-text-size-adjust:none}#blog_nav_rss{display:none!important}#blog_nav_newpost{display:none!important}img{max-width:300px!important;height:auto}.commentform{margin-left:10px}#mainContent{margin-left:0;float:none;width:100%!important;padding-right:0!important}#mainContent .forFlow{margin-left:0!important}#home{width:auto;min-width:0;margin-left:0!important;margin-right:0!important}.postTitle{float:none}#navList a{width:auto}#topics .postTitle{width:auto}</style>
+<link type=application/rss+xml rel=alternate href=https://www.cnblogs.com/kelamoyujuzhen/rss>
+<link type=application/rsd+xml rel=EditURI href=https://www.cnblogs.com/kelamoyujuzhen/rsd.xml>
+<link type=application/wlwmanifest+xml rel=wlwmanifest href=https://www.cnblogs.com/kelamoyujuzhen/wlwmanifest.xml>
+<link id=favicon rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGNsaXBQYXRoIGlkPSJwcmVmaXhfX2NsaXAtcGF0aCI+PHBhdGggY2xhc3M9InByZWZpeF9fY2xzLTEiIGQ9Ik0yOS40OCAyNS4yNGMtLjE2LTEuODktLjA4LTEuNS0uMjQtMy4xNmE3Mi4yNCA3Mi4yNCAwIDAwLTItMTAuMzdMMjYgNi4yNWwtMi42IDUuNDEtLjQ0Ljg5cS0uMjQuNDgtLjU0IDFhMjAuNDMgMjAuNDMgMCAwMS0xLjI0IDEuODQgMjAuMDggMjAuMDggMCAwMS0zLjA4IDMuMjQgMTkuNzIgMTkuNzIgMCAwMS0zLjg3IDIuNTNjLS43Mi4zMy0xLjQ1LjcxLTIuMjMgMS0uMzQuMTQtMS4xOS40NC0xLjkzLjY2YTIuNTUgMi41NSAwIDAxLTEuMDctLjNjLS4zNC0xLS44My0yLjI0LTEuMi0zLjE5LS41LTEuMjUtMS0yLjUtMS41MS0zLjczYTU5LjExIDU5LjExIDAgMDAtMy42Mi03LjI1IDU5LjgyIDU5LjgyIDAgMDAxLjUxIDcuOTRjLjMgMS4zLjcgMi41OCAxLjA1IDMuODdTNiAyMi43MSA2LjQ0IDI0YTEuNCAxLjQgMCAwMDEuMjkuOTNjMS4yOCAwIDIuNTcuMDYgMy44Ni4wNXMyLjU5IDAgMy44OC0uMTFhNTYgNTYgMCAwMDcuNzktLjg3Yy0xLjkyLS40OS03LjUtLjgxLTEwLjc5LTEuMDZhNDMgNDMgMCAwMDYuNTMtMS43IDI0LjA2IDI0LjA2IDAgMDA1LjM4LTMuNDVjLjcxLS42MiAxLjIxIDEuODggMi4zOSA1LjI3LjYyIDEuNjkuMzQgMSAxIDIuNjZzMS4zNyA0LjM4IDIuMTcgNmMtLjA3LTEuODItLjMxLTQuNjctLjQ2LTYuNDh6Ii8+PC9jbGlwUGF0aD48Y2xpcFBhdGggaWQ9InByZWZpeF9fY2xpcC1wYXRoLTIiPjxwYXRoIGNsYXNzPSJwcmVmaXhfX2Nscy0xIiBkPSJNMjAuOTIgMy40NmE0LjI1IDQuMjUgMCAwMS4zMSA1Ljg2IDMuOTEgMy45MSAwIDAxLTUuNjYuMjQgNC4yNSA0LjI1IDAgMDEtLjMxLTUuODYgMy45MSAzLjkxIDAgMDE1LjY2LS4yNG0xLjM1LTEuNTRhNS44OSA1Ljg5IDAgMDAtOC41My4zNiA2LjQxIDYuNDEgMCAwMC40OCA4LjgzIDUuOTEgNS45MSAwIDAwOC41My0uMzYgNi40MSA2LjQxIDAgMDAtLjQ4LTguODN6Ii8+PC9jbGlwUGF0aD48c3R5bGU+LnByZWZpeF9fY2xzLTF7ZmlsbDojM2UzYTM5fUBtZWRpYSAocHJlZmVycy1jb2xvci1zY2hlbWU6ZGFyayl7LnByZWZpeF9fY2xzLTF7ZmlsbDojZWZlZmVmfX08L3N0eWxlPjwvZGVmcz48ZyBzdHlsZT0iaXNvbGF0aW9uOmlzb2xhdGUiPjxnIGlkPSJwcmVmaXhfX2xheWVyXzEiIGRhdGEtbmFtZT0ibGF5ZXIgMSI+PHBhdGggY2xhc3M9InByZWZpeF9fY2xzLTEiIGQ9Ik0yOS40OCAyNS4yNGMtLjE2LTEuODktLjA4LTEuNS0uMjQtMy4xNmE3Mi4yNCA3Mi4yNCAwIDAwLTItMTAuMzdMMjYgNi4yNWwtMi42IDUuNDEtLjQ0Ljg5cS0uMjQuNDgtLjU0IDFhMjAuNDMgMjAuNDMgMCAwMS0xLjI0IDEuODQgMjAuMDggMjAuMDggMCAwMS0zLjA4IDMuMjQgMTkuNzIgMTkuNzIgMCAwMS0zLjg3IDIuNTNjLS43Mi4zMy0xLjQ1LjcxLTIuMjMgMS0uMzQuMTQtMS4xOS40NC0xLjkzLjY2YTIuNTUgMi41NSAwIDAxLTEuMDctLjNjLS4zNC0xLS44My0yLjI0LTEuMi0zLjE5LS41LTEuMjUtMS0yLjUtMS41MS0zLjczYTU5LjExIDU5LjExIDAgMDAtMy42Mi03LjI1IDU5LjgyIDU5LjgyIDAgMDAxLjUxIDcuOTRjLjMgMS4zLjcgMi41OCAxLjA1IDMuODdTNiAyMi43MSA2LjQ0IDI0YTEuNCAxLjQgMCAwMDEuMjkuOTNjMS4yOCAwIDIuNTcuMDYgMy44Ni4wNXMyLjU5IDAgMy44OC0uMTFhNTYgNTYgMCAwMDcuNzktLjg3Yy0xLjkyLS40OS03LjUtLjgxLTEwLjc5LTEuMDZhNDMgNDMgMCAwMDYuNTMtMS43IDI0LjA2IDI0LjA2IDAgMDA1LjM4LTMuNDVjLjcxLS42MiAxLjIxIDEuODggMi4zOSA1LjI3LjYyIDEuNjkuMzQgMSAxIDIuNjZzMS4zNyA0LjM4IDIuMTcgNmMtLjA3LTEuODItLjMxLTQuNjctLjQ2LTYuNDh6Ii8+PGcgY2xpcC1wYXRoPSJ1cmwoI3ByZWZpeF9fY2xpcC1wYXRoKSI+PHBhdGggY2xhc3M9InByZWZpeF9fY2xzLTEiIGQ9Ik0tLjg3LS43OGgzNC40MnYzMy4wN0gtLjg3eiIvPjwvZz48cGF0aCBjbGFzcz0icHJlZml4X19jbHMtMSIgZD0iTTIwLjkyIDMuNDZhNC4yNSA0LjI1IDAgMDEuMzEgNS44NiAzLjkxIDMuOTEgMCAwMS01LjY2LjI0IDQuMjUgNC4yNSAwIDAxLS4zMS01Ljg2IDMuOTEgMy45MSAwIDAxNS42Ni0uMjRtMS4zNS0xLjU0YTUuODkgNS44OSAwIDAwLTguNTMuMzYgNi40MSA2LjQxIDAgMDAuNDggOC44MyA1LjkxIDUuOTEgMCAwMDguNTMtLjM2IDYuNDEgNi40MSAwIDAwLS40OC04LjgzeiIvPjxnIGNsaXAtcGF0aD0idXJsKCNwcmVmaXhfX2NsaXAtcGF0aC0yKSI+PHBhdGggY2xhc3M9InByZWZpeF9fY2xzLTEiIGQ9Ik0tLjg3LS43OGgzNC40MnYzMy4wN0gtLjg3eiIvPjwvZz48L2c+PC9nPjwvc3ZnPg==" type=image/svg+xml><style>.sf-hidden{display:none!important}</style><link rel=canonical href=https://www.cnblogs.com/kelamoyujuzhen/p/11959988.html></head>
+<body class="has-navbar has-bannerbar">
+ 
+ 
+ 
+ 
+ 
+ 
+<div id=home>
+<div id=header>
+ <div id=blogTitle>
+ <a id=lnkBlogLogo href=https://www.cnblogs.com/kelamoyujuzhen/><img id=blogLogo src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt=返回主页></a> 
+ 
+<h1><a id=Header1_HeaderTitle class="headermaintitle HeaderMainTitle" href=https://www.cnblogs.com/kelamoyujuzhen/>kelamoyujuzhen</a>
+</h1>
+<h2>秋招已上岸，需要内推请私信</h2>
+ 
+ </div>
+ <div id=navigator>
+ 
+<ul id=navList>
+<li><a id=blog_nav_sitehome class=menu href=https://www.cnblogs.com/>
+博客园</a>
+</li>
+<li>
+<a id=blog_nav_myhome class=menu href=https://www.cnblogs.com/kelamoyujuzhen/>
+首页</a>
+</li>
+<li>
+<a id=blog_nav_newpost class=menu href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id=blog_nav_contact class=menu href=https://msg.cnblogs.com/send/%E5%85%8B%E6%8B%89%E9%BB%98%E4%B8%8E%E7%9F%A9%E9%98%B5>
+联系</a></li>
+<li>
+<a id=blog_nav_rss class=menu href=https://www.cnblogs.com/kelamoyujuzhen/p/11959988.html data-rss=https://www.cnblogs.com/kelamoyujuzhen/rss/>
+订阅</a>
+</li>
+<li>
+<a id=blog_nav_admin class=menu href=https://i.cnblogs.com/>
+管理</a>
+</li>
+</ul>
+ <div class=blogStats>
+ <span id=stats_post_count>随笔 - 486&nbsp; </span>
+<span id=stats_article_count>文章 - 0&nbsp; </span>
+<span id=stats-comment_count>评论 - 16</span>
+ </div>
+ </div>
+</div>
+<div id=main>
+ <div id=mainContent>
+ <div class=forFlow>
+ <div id=post_detail>
+ 
+ <div id=topics>
+ <div class=post>
+ <h1 class=postTitle>
+ 
+<a id=cb_post_title_url class="postTitle2 vertical-middle" href=https://www.cnblogs.com/kelamoyujuzhen/p/11959988.html>
+ <span>独木桥问题</span>
+ 
+</a>
+ </h1>
+ <div class=clear></div>
+ <div class=postBody>
+ 
+<div id=cnblogs_post_body class="blogpost-body cnblogs-markdown">
+ <h1 id=前言>前言</h1>
+<p><strong>独木桥问题</strong>是操作系统中P、V操作部分的经典问题，有很多变种问题也是考试的重点，需要准确牢记！</p>
+<h1 id=独木桥问题1>独木桥问题1</h1>
+<h2 id=问题描述>问题描述</h2>
+<p>东西向汽车过独木桥，为了保证安全，只要桥上无车，则允许一方的汽车过桥，待一方的车全部过完后， 另一方的车才允许过桥。请用信号量和 P、V操作写出过独木桥问题的同步算法。</p>
+<h2 id=问题分析>问题分析</h2>
+<p>首先对于东西两侧的车辆而言，<strong>桥</strong>是一个<strong>互斥</strong>资源，而对东西两侧各自而言，每辆车上桥是<strong>同步关系</strong>，东西两侧的车辆在抢到这互斥资源后只有<strong>最后一辆车</strong>通过了独木桥才释放，所以需要记录上桥车子的数量，这个问题和<strong>读者优先的读写问题</strong>很相似。</p>
+<h1 id=pv、操作>PV、操作</h1>
+<pre><code class="language-c hljs">semaphore wait = <span class=hljs-number>1</span>；  <span class=hljs-comment>// 互斥信号量，表示独木桥的数量</span>
+<span class=hljs-keyword>int</span> count1 = <span class=hljs-number>0</span>;       <span class=hljs-comment>// 东侧车辆在独木桥上的数量</span>
+semaphore mutex1 = <span class=hljs-number>1</span>; <span class=hljs-comment>// 东侧车辆的互斥信号量，保证count1操作的完整执行</span>
+<span class=hljs-keyword>int</span> count2 = <span class=hljs-number>0</span>;       <span class=hljs-comment>// 西侧车辆在独木桥上的数量</span>
+semaphore mutex2 = <span class=hljs-number>1</span>; <span class=hljs-comment>// 西侧车辆的互斥信号量，保证count2操作的完整执行</span>
+
+cobegin
+process P东() {
+	P(mutex1);
+	count1++;
+	<span class=hljs-keyword>if</span>(count1 == <span class=hljs-number>1</span>)  <span class=hljs-comment>// 东侧第一个准备上桥的车去抢夺独木桥</span>
+		P(wait);
+	V(mutex1);
+	{过独木桥};
+	P(mutex1);
+	count1--;
+	<span class=hljs-keyword>if</span>(count1 == <span class=hljs-number>0</span>)  <span class=hljs-comment>// 东侧最后一个已经下桥的车去释放独木桥</span>
+		V(wait);
+	V(mutex1);
+}
+
+process P西() {
+	P(mutex2);
+	count2++;
+	<span class=hljs-keyword>if</span>(count2 == <span class=hljs-number>1</span>)  <span class=hljs-comment>// 西侧第一个准备上桥的车去抢夺独木桥</span>
+		P(wait);
+	V(mutex2);
+	{过独木桥};
+	P(mutex2);
+	count2--;
+	<span class=hljs-keyword>if</span>(count2 == <span class=hljs-number>0</span>)  <span class=hljs-comment>// 西侧最后一个已经下桥的车去释放独木桥</span>
+		V(wait);
+	V(mutex2);
+}
+coend
+</code></pre>
+<h1 id=独木桥问题2>独木桥问题2</h1>
+<h2 id=问题描述-1>问题描述</h2>
+<p>在<strong>独木桥问题1</strong>中，限制桥面上最多可以有k辆汽车通过。试用信号量和P、V操作写出过独木桥问题的同步算法</p>
+<h2 id=问题分析-1>问题分析</h2>
+<p>在<strong>独木桥问题1</strong>的基础上，增加对桥面上车辆的控制，东西侧抢夺到独木桥的一方，要竞争上桥的名额，所以要<strong>增加一个互斥信号量</strong></p>
+<h2 id=p、v操作>P、V操作</h2>
+<pre><code class="language-c hljs">semaphore wait = <span class=hljs-number>1</span>；  <span class=hljs-comment>// 互斥信号量，表示独木桥的数量</span>
+<span class=hljs-keyword>int</span> count1 = <span class=hljs-number>0</span>;       <span class=hljs-comment>// 东侧车辆在独木桥上的数量</span>
+semaphore mutex1 = <span class=hljs-number>1</span>; <span class=hljs-comment>// 东侧车辆的互斥信号量，保证count1操作的完整执行</span>
+<span class=hljs-keyword>int</span> count2 = <span class=hljs-number>0</span>;       <span class=hljs-comment>// 西侧车辆在独木桥上的数量</span>
+semaphore mutex2 = <span class=hljs-number>1</span>; <span class=hljs-comment>// 西侧车辆的互斥信号量，保证count2操作的完整执行</span>
+semaphore bridge = k; <span class=hljs-comment>// 限制获得独木桥使用权的一方在独木桥上的数量</span>
+
+cobegin
+process P东() {
+	P(mutex1);
+	count1++;
+	<span class=hljs-keyword>if</span>(count1 == <span class=hljs-number>1</span>)  <span class=hljs-comment>// 东侧第一个准备上桥的车去抢夺独木桥</span>
+		P(wait);
+	V(mutex1);
+	
+	P(bridge);
+	{过独木桥};
+	V(bridge);
+	
+	P(mutex1);
+	count1--;
+	<span class=hljs-keyword>if</span>(count1 == <span class=hljs-number>0</span>)  <span class=hljs-comment>// 东侧最后一个已经下桥的车去释放独木桥</span>
+		V(wait);
+	V(mutex1);
+}
+
+process P西() {
+	P(mutex2);
+	count2++;
+	<span class=hljs-keyword>if</span>(count2 == <span class=hljs-number>1</span>)  <span class=hljs-comment>// 西侧第一个准备上桥的车去抢夺独木桥</span>
+		P(wait);
+	V(mutex2);
+	
+	P(bridge);
+	{过独木桥};
+	V(bridge);
+	
+	P(mutex2);
+	count2--;
+	<span class=hljs-keyword>if</span>(count2 == <span class=hljs-number>0</span>)  <span class=hljs-comment>// 西侧最后一个已经下桥的车去释放独木桥</span>
+		V(wait);
+	V(mutex2);
+}
+coend
+</code></pre>
+<h1 id=独木桥问题3（最难理解）>独木桥问题3（最难理解）</h1>
+<h2 id=问题描述-2>问题描述</h2>
+<p>在<strong>独木桥问题1</strong>中，以<strong>三辆汽车为一组</strong>，要求保证东方和西方以组为单位<strong>交替通过</strong>汽车。试用信号量和P， V操作写出汽车过独木桥问题的同步算法</p>
+<h2 id=问题分析-2>问题分析</h2>
+<p>要求东西方车辆交替通过，优点生产者消费者的同步问题的感觉，所以需要两个同步信号量维持东西方车辆交替进行，一方的三辆车通过后就去唤醒另一方通过，依次循环，直至全部通过。</p>
+<h2 id=p、v操作-1>P、V操作</h2>
+<pre><code class="language-c hljs">semaphore wait = <span class=hljs-number>1</span>；  <span class=hljs-comment>// 互斥信号量，表示独木桥的数量</span>
+<span class=hljs-keyword>int</span> count1 = <span class=hljs-number>0</span>;       <span class=hljs-comment>// 东侧车辆在独木桥上的数量</span>
+semaphore mutex1 = <span class=hljs-number>1</span>; <span class=hljs-comment>// 东侧车辆的互斥信号量，保证count1操作的完整执行</span>
+<span class=hljs-keyword>int</span> count2 = <span class=hljs-number>0</span>;       <span class=hljs-comment>// 西侧车辆在独木桥上的数量</span>
+semaphore mutex2 = <span class=hljs-number>1</span>; <span class=hljs-comment>// 西侧车辆的互斥信号量，保证count2操作的完整执行</span>
+semaphore S1 = <span class=hljs-number>3</span>;     <span class=hljs-comment>// 东侧可以上桥的车子数量</span>
+semaphore S2 = <span class=hljs-number>0</span>;     <span class=hljs-comment>// 西侧可以上桥的车子数量</span>
+
+cobegin
+process P东() {
+	P(S1);           <span class=hljs-comment>// 东侧先申请使用独木桥</span>
+	P(mutex1);
+	count1++;
+	<span class=hljs-keyword>if</span>(count1 == <span class=hljs-number>1</span>)  <span class=hljs-comment>// 东侧第一个准备上桥的车去抢夺独木桥</span>
+		P(wait);
+	V(mutex1);
+	{过独木桥};
+	V(S2);
+	P(mutex1);
+	count1--;
+	<span class=hljs-keyword>if</span>(count1 == <span class=hljs-number>0</span>)  <span class=hljs-comment>// 东侧最后一个已经下桥的车去释放独木桥</span>
+		V(wait);
+	V(mutex1);
+}
+
+process P西() {
+	P(S2);           <span class=hljs-comment>// S2初始值为0，所以刚开始只能等待</span>
+	P(mutex2);
+	count2++;
+	<span class=hljs-keyword>if</span>(count2 == <span class=hljs-number>1</span>)  <span class=hljs-comment>// 西侧第一个准备上桥的车去抢夺独木桥</span>
+		P(wait);
+	V(mutex2);
+	{过独木桥};
+	V(S1);
+	P(mutex2);
+	count2--;
+	<span class=hljs-keyword>if</span>(count2 == <span class=hljs-number>0</span>)  <span class=hljs-comment>// 西侧最后一个已经下桥的车去释放独木桥</span>
+		V(wait);
+	V(mutex2);
+}
+coend
+</code></pre>
+<h2 id=p、v操作错误分析>P、V操作错误分析</h2>
+<p>仔细地观察上述P、V操作，会发现它描述的情况和题目的要求不完全一致。因为情况较多，在这就举一个反例。</p>
+<p><strong>反例：</strong>因为我们给<code>S1</code>设置初值为3，所以东侧在争夺独木桥方面是具有优势的。刚开始，肯定是东侧的一辆<strong>车A</strong>先上桥，<strong>A过了独木桥以后</strong>会使<code>S2+1</code>，这个时候西侧的<strong>车B</strong>就有希望继续执行，由于这个时候独木桥的使用权在东侧，所以车B执行到<code>P(wait)</code>，然后等待。假设这个时候东侧只有车A上桥，车A继续执行到<code>count1--</code>，问题就出在这里，因为此时只有车A上桥，所以<code>count</code>的值为1，执行完<code>count--</code>以后，<code>count==0</code>正好满足释放独木桥的条件，西侧的车B等待这一刻很久了，它如果瞅准时机，申请到了独木桥的使用权，此时就会呈现东西侧以<strong>一辆车为一组</strong>交替执行，不满足题目要求。</p>
+<p>由分析我们可以看出，上述P、V操作其实包含着很多种可能，有可能是<strong>一辆车为一组</strong>，也有可能是<strong>两辆车为一组</strong>，也有可能是<strong>三辆车为一组</strong>，设置会出现东西侧车辆以<strong>不同的数量为一组</strong>交替通过独木桥。</p>
+<p><strong>我们要求解的答案是上述可能性的子集！</strong></p>
+<h2 id=正解>正解</h2>
+<p><strong>分析：</strong>仔细研究上述错误的P、V操作会发现，原因出在释放资源的判断上，上述写法，无法保证一组有三辆车子下桥，所以我们引入新的变量来表示下桥的车子数量</p>
+<pre><code class="language-c hljs">semaphore wait = <span class=hljs-number>1</span>;    <span class=hljs-comment>// 互斥信号量，表示独木桥的数量</span>
+<span class=hljs-keyword>int</span> countu1 = <span class=hljs-number>0</span>;        <span class=hljs-comment>// 东侧在桥上的车子数量</span>
+<span class=hljs-keyword>int</span> countd1 = <span class=hljs-number>0</span>;       <span class=hljs-comment>// 东侧下桥的车子数量</span>
+semaphore mutex1 = <span class=hljs-number>1</span>;  <span class=hljs-comment>// 东侧车辆的互斥信号量，保证count1和countu1操作的完整执行</span>
+<span class=hljs-keyword>int</span> countu2 = <span class=hljs-number>0</span>;        <span class=hljs-comment>// 西侧在桥上的车子数量</span>
+<span class=hljs-keyword>int</span> countd2 = <span class=hljs-number>0</span>;       <span class=hljs-comment>// 西侧下桥的车子数量</span>
+semaphore mutex2 = <span class=hljs-number>1</span>;  <span class=hljs-comment>// 西侧车辆的互斥信号量，保证count2和countu2操作的完整执行</span>
+semaphore S1 = <span class=hljs-number>3</span>;      <span class=hljs-comment>// 东侧可以上桥的车子数量</span>
+semaphore S2 = <span class=hljs-number>0</span>;      <span class=hljs-comment>// 西侧可以上桥的车子数量</span>
+
+cobegin
+process P东() {
+    P(S1);             <span class=hljs-comment>// S1初始值为3，所以可以先申请使用独木桥</span>
+    P(mutex1);         <span class=hljs-comment>// 为保证countu1++完整执行而进入临界区</span>
+    countu1++;         <span class=hljs-comment>// 东侧上桥车子数量+1</span>
+    <span class=hljs-keyword>if</span>(countu1 == <span class=hljs-number>1</span>)   <span class=hljs-comment>// 如果是第一个上桥的车子，则去占用独木桥</span>
+    	P(wait);
+    V(mutex1);         <span class=hljs-comment>// countu1++操作完成，故退出临界区</span>
+    {过独木桥};
+    V(S2);             <span class=hljs-comment>// 唤醒西侧车子</span>
+    
+    P(mutex1);         <span class=hljs-comment>// 为保证countu1--和countd1++完整执行而进入临界区</span>
+    countu1--;         <span class=hljs-comment>// 东侧车子开始下桥</span>
+    countd1++;         <span class=hljs-comment>// 记录东侧下桥的车子数量</span>
+    <span class=hljs-keyword>if</span>((countu1 == <span class=hljs-number>0</span>) &amp;&amp; countd1 == <span class=hljs-number>3</span>) {
+    	countd1 = <span class=hljs-number>0</span>;
+     	V(wait);   
+    }
+    V(mutex1);
+}
+
+process P西() {
+    P(S2);             <span class=hljs-comment>// S2初始值为0，所以刚开始西侧只能等待</span>
+    P(mutex2);         <span class=hljs-comment>// 为保证countu2++的完整执行而进入临界区</span>
+    countu2++;         <span class=hljs-comment>// 西侧上桥车子数量+1</span>
+    <span class=hljs-keyword>if</span>(countu2 == <span class=hljs-number>1</span>)   <span class=hljs-comment>// 如果是第一个上桥的车子，则去占用独木桥</span>
+    	P(wait);
+    V(mutex2);         <span class=hljs-comment>// countu2++操作完成，故退出临界区</span>
+    {过独木桥};
+    V(S1);             <span class=hljs-comment>// 唤醒东侧车子</span>
+    
+    P(mutex2);         <span class=hljs-comment>// 为保证countu2--和countd2++完整执行而进入临界区</span>
+    countu2--;         <span class=hljs-comment>// 西侧车子开始下桥</span>
+    countd2++;         <span class=hljs-comment>// 记录西侧下桥的车子数量</span>
+    <span class=hljs-keyword>if</span>((countu2 == <span class=hljs-number>0</span>) &amp;&amp; (countd2 == <span class=hljs-number>3</span>)) {
+    	countd2 = <span class=hljs-number>0</span>;
+    	V(wait);
+    }
+    V(mutex2);
+}
+coend
+</code></pre>
+<h1 id=独木桥问题4>独木桥问题4</h1>
+<h2 id=问题描述-3>问题描述</h2>
+<p>在<strong>独木桥问题1</strong>中，要求各方向的汽车串行过桥，但<strong>当另一方提出过桥时，应能阻止对方未上桥的后继车辆</strong>，待桥面上的汽车过完桥后，另一方的汽车开始过桥。试用信号量和P，V 操作写出过独木桥问题的同步算法</p>
+<h2 id=问题分析-3>问题分析</h2>
+<p>根据问题描述，在独木桥问题1中，东西侧车辆也是互斥通过独木桥的，问题4只是在此基础上<strong>增加了一方对另一方排他性的控制</strong>这样的要求，应该使用互斥信号量来完成。</p>
+<h2 id=p、v操作-2>P、V操作</h2>
+<pre><code class="language-c hljs">semaphore wait = <span class=hljs-number>1</span>；  <span class=hljs-comment>// 互斥信号量，表示独木桥的数量</span>
+<span class=hljs-keyword>int</span> count1 = <span class=hljs-number>0</span>;       <span class=hljs-comment>// 东侧车辆在独木桥上的数量</span>
+semaphore mutex1 = <span class=hljs-number>1</span>; <span class=hljs-comment>// 东侧车辆的互斥信号量，保证count1操作的完整执行</span>
+<span class=hljs-keyword>int</span> count2 = <span class=hljs-number>0</span>;       <span class=hljs-comment>// 西侧车辆在独木桥上的数量</span>
+semaphore mutex2 = <span class=hljs-number>1</span>; <span class=hljs-comment>// 西侧车辆的互斥信号量，保证count2操作的完整执行</span>
+semaphore stop = <span class=hljs-number>1</span>;   <span class=hljs-comment>// 上桥许可证，表示同一时刻桥上只有来自同一方向的车</span>
+
+cobegin
+process P东() {
+	P(stop);
+		P(mutex1);
+		count1++;
+		<span class=hljs-keyword>if</span>(count1 == <span class=hljs-number>1</span>)  <span class=hljs-comment>// 东侧第一个准备上桥的车去抢夺独木桥</span>
+			P(wait);
+		V(mutex1);
+	V(stop);
+	{过独木桥};
+	P(mutex1);
+	count1--;
+	<span class=hljs-keyword>if</span>(count1 == <span class=hljs-number>0</span>)      <span class=hljs-comment>// 东侧最后一个已经下桥的车去释放独木桥</span>
+		V(wait);
+	V(mutex1);
+}
+
+process P西() {
+	P(stop);
+		P(mutex2);
+		count2++;
+		<span class=hljs-keyword>if</span>(count2 == <span class=hljs-number>1</span>)  <span class=hljs-comment>// 西侧第一个准备上桥的车去抢夺独木桥</span>
+			P(wait);
+		V(mutex2);
+	V(stop);
+	{过独木桥};
+	P(mutex2);
+	count2--;
+	<span class=hljs-keyword>if</span>(count2 == <span class=hljs-number>0</span>)  <span class=hljs-comment>// 西侧最后一个已经下桥的车去释放独木桥</span>
+		V(wait);
+	V(mutex2);
+}
+coend
+</code></pre>
+</div>
+<div id=MySignature class=sf-hidden></div>
+<div class=clear></div>
+ </div>
+ <div class=postDesc>posted @ 
+<span id=post-date>2019-11-29 19:59</span>&nbsp;
+<a href=https://www.cnblogs.com/kelamoyujuzhen/>克拉默与矩阵</a>&nbsp;
+阅读(<span id=post_view_count>515</span>)&nbsp;
+评论(<span id=post_comment_count>0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=11959988" rel=nofollow>编辑</a>&nbsp;
+<a href=https://www.cnblogs.com/kelamoyujuzhen/p/11959988.html>收藏</a></div>
+ </div>
+ 
+ 
+ </div>
+</div>
+<a name=!comments></a>
+<div id=blog-comments-placeholder class=sf-hidden></div>
+<div id=comment_form class=commentform>
+ <a name=commentform></a>
+ <div id=divCommentShow></div>
+ <div id=comment_nav><span id=span_refresh_tips></span><a href=https://www.cnblogs.com/kelamoyujuzhen/p/11959988.html id=lnk_RefreshComments runat=server clientidmode=Static>刷新评论</a><a href=#>刷新页面</a><a href=#top>返回顶部</a></div>
+ 
+ <div class=ad_text_commentbox id=ad_text_under_commentbox></div>
+ 
+ <div id=opt_under_post></div>
+ 
+ 
+ 
+ 
+ <div id=HistoryToday class=c_ad_block></div>
+ 
+</div>
+ </div>
+ </div>
+ 
+ 
+ </div>
+ 
+ 
+<div class=clear></div><div id=footer>
+ 
+Copyright © 2020 克拉默与矩阵
+<br><span id=poweredby>Powered by .NET 5.0.1-servicing.20575.16 on Kubernetes</span>
+ </div></div>
+ 
